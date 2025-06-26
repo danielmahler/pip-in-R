@@ -415,14 +415,14 @@
 <section id="poverty-data-at-the-world-bank" class="slide level2">
 <h2>Poverty data at the World Bank</h2>
 <ul>
-<li><p>The World Bank mission is to help low- and middle-income countries reduce poverty</p></li>
+<li><p>The World Bank’s mission is to help low- and middle-income countries reduce poverty</p></li>
 <li><p>The Bank often helps countries field household surveys to measure poverty and helps countries create poverty estimates from these surveys</p></li>
-<li><p>Some countries do not receive assistance yet the Bank is granted access to the data through collaborations with the National Statistical Office</p></li>
-<li><p>For high-income countries, poverty data is sourced from the Luxembourg Income Study or EU-SILC</p></li>
+<li><p>Countries that do not receive assistance often grant the Bank access to the data through collaborations with the National Statistical Office</p></li>
+<li><p>For high-income countries, we access poverty data from the Luxembourg Income Study or EU-SILC</p></li>
 </ul>
 </section>
-<section id="the-poverty-and-inequality-data-platform-pip" class="slide level2">
-<h2>The Poverty and Inequality data Platform (PIP)</h2>
+<section id="the-poverty-and-inequality-platform-pip" class="slide level2">
+<h2>The Poverty and Inequality Platform (PIP)</h2>
 <ul>
 <li><p>This data is harmonized to the extent possible and converted to dollars using purchasing power exchange rates</p></li>
 <li><p>The harmonized data is available in the Poverty and Inequality Platform (PIP) at <a href="https://pip.worldbank.org">pip.worldbank.org</a></p></li>
@@ -434,16 +434,15 @@
 <h1>Accesing PIP in R</h1>
 
 </section>
-<section id="the-pipr-package" class="slide level2">
-<h2>The pipr package</h2>
-<p><strong>Installation:</strong></p>
+<section id="installing-the-pipr-package" class="slide level2">
+<h2>Installing the pipr package</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># To install the pipr package, you first need to install the devtools package</span></span>
 <span id="cb1-2"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
 <span id="cb1-3"><a href=""></a><span class="co"># The devtools package allows you to install pipr through GitHub</span></span>
 <span id="cb1-4"><a href=""></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"worldbank/pipr"</span>)</span>
 <span id="cb1-5"><a href=""></a><span class="co"># Now load pipr</span></span>
 <span id="cb1-6"><a href=""></a><span class="fu">library</span>(pipr)</span>
-<span id="cb1-7"><a href=""></a><span class="co"># I'll use dplyr a lot in these slides, so best to load it as well</span></span>
+<span id="cb1-7"><a href=""></a><span class="co"># We'll use dplyr a lot in these slides, so best to load it as well</span></span>
 <span id="cb1-8"><a href=""></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>More information about the package:</strong></p>
 <p><a href="https://worldbank.github.io/pipr/" class="uri">https://worldbank.github.io/pipr/</a></p>
@@ -451,13 +450,13 @@
 <section id="two-main-functions" class="slide level2">
 <h2>Two main functions</h2>
 <ul>
-<li><p><strong><code>get_stats()</code>:</strong> <em>country</em> estimates of poverty and inequality</p>
+<li><p><strong><code>get_stats()</code>:</strong> <u>country</u> estimates of poverty and inequality</p>
 <ul>
 <li><p>each row identifies a unique combination of <em>country_code</em>, <em>year</em>, <em>reporting_level</em>, and <em>welfare_type</em></p></li>
 <li><p><em>reporting_level</em>: Mostly national, but can be urban or rural</p></li>
 <li><p><em>welfare_type</em>: Income or consumption</p></li>
 </ul></li>
-<li><p><strong><code>get_wb()</code>:</strong> <em>regional/global</em> estimates of poverty and inequality</p>
+<li><p><strong><code>get_wb()</code>:</strong> <u>regional/global</u> estimates of poverty and inequality</p>
 <ul>
 <li>each row identifies a unique combination of <em>region_code</em> and <em>year</em>.</li>
 </ul></li>
@@ -491,33 +490,10 @@
 </div>
 </div>
 </section>
-<section id="variables" class="slide level2">
-<h2>Variables</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">colnames</span>(<span class="fu">get_stats</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "region_name"          "region_code"          "country_name"        
- [4] "country_code"         "year"                 "reporting_level"     
- [7] "survey_acronym"       "survey_coverage"      "welfare_time"        
-[10] "welfare_type"         "survey_comparability" "comparable_spell"    
-[13] "poverty_line"         "headcount"            "poverty_gap"         
-[16] "poverty_severity"     "watts"                "mean"                
-[19] "median"               "mld"                  "gini"                
-[22] "polarization"         "decile1"              "decile2"             
-[25] "decile3"              "decile4"              "decile5"             
-[28] "decile6"              "decile7"              "decile8"             
-[31] "decile9"              "decile10"             "cpi"                 
-[34] "ppp"                  "pop"                  "gdp"                 
-[37] "hfce"                 "is_interpolated"      "distribution_type"   
-[40] "estimation_type"      "spl"                  "spr"                 
-[43] "pg"                   "estimate_type"       </code></pre>
-</div>
-</div>
-</section>
 <section id="variable-information" class="slide level2">
 <h2>Variable information</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">get_aux</span>(<span class="st">"dictionary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">get_aux</span>(<span class="st">"dictionary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 41 × 2
    variable        definition                                                   
@@ -539,8 +515,8 @@
 <section id="ghanaian-estimates" class="slide level2">
 <h2>Ghanaian estimates</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"GHA"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount,mean,gini)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"GHA"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount,mean,gini)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 6
   country_code  year poverty_line headcount  mean  gini
@@ -562,8 +538,8 @@
 <section id="different-poverty-line" class="slide level2">
 <h2>Different poverty line</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"LUX"</span>, <span class="at">povline =</span> <span class="dv">10</span>)  <span class="sc">|&gt;</span>    </span>
-<span id="cb10-2"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"LUX"</span>, <span class="at">povline =</span> <span class="dv">10</span>)  <span class="sc">|&gt;</span>    </span>
+<span id="cb8-2"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 4
    country_code  year poverty_line headcount
@@ -585,28 +561,28 @@
 <section id="multiple-poverty-lines" class="slide level2">
 <h2>Multiple poverty lines</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>povlines <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>) </span>
-<span id="cb12-2"><a href=""></a>purrr<span class="sc">::</span><span class="fu">map_dfr</span>(<span class="at">.x      =</span> povlines,                 </span>
-<span id="cb12-3"><a href=""></a>               <span class="at">.f      =</span> get_stats,                 </span>
-<span id="cb12-4"><a href=""></a>               <span class="at">country =</span> <span class="st">"LUX"</span>,                </span>
-<span id="cb12-5"><a href=""></a>               <span class="at">year    =</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span>    </span>
-<span id="cb12-6"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>povlines <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>,<span class="dv">100</span>) </span>
+<span id="cb10-2"><a href=""></a>purrr<span class="sc">::</span><span class="fu">map_dfr</span>(<span class="at">.x      =</span> povlines,                 </span>
+<span id="cb10-3"><a href=""></a>               <span class="at">.f      =</span> get_stats,                 </span>
+<span id="cb10-4"><a href=""></a>               <span class="at">country =</span> <span class="st">"LUX"</span>,                </span>
+<span id="cb10-5"><a href=""></a>               <span class="at">year    =</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span>    </span>
+<span id="cb10-6"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
   country_code  year poverty_line headcount
   &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
-1 LUX           2019            5   0.00134
-2 LUX           2019           10   0.00396
-3 LUX           2019           20   0.0164 
-4 LUX           2019           50   0.260  </code></pre>
+1 LUX           2022           10   0.00280
+2 LUX           2022           20   0.0130 
+3 LUX           2022           50   0.203  
+4 LUX           2022          100   0.592  </code></pre>
 </div>
 </div>
 </section>
 <section id="estimates-across-selected-countries" class="slide level2">
 <h2>Estimates across selected countries</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="fu">c</span>(<span class="st">"LUX"</span>,<span class="st">"GHA"</span>,<span class="st">"VNM"</span>), <span class="at">year=</span><span class="dv">2022</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount, mean, gini)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="fu">c</span>(<span class="st">"LUX"</span>,<span class="st">"GHA"</span>,<span class="st">"VNM"</span>), <span class="at">year=</span><span class="dv">2022</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount, mean, gini)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 6
   country_code  year poverty_line headcount  mean  gini
@@ -626,9 +602,9 @@
 <section id="interpolated-and-extrapolated-values" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Interpolated and extrapolated values</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb16-1" class="hljs-ln-code"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"GHA"</span>, <span class="at">fill_gaps =</span> <span class="cn">TRUE</span>)  <span class="sc">|&gt;</span> </span>
-<span id="cb16-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">filter</span>(year<span class="sc">&gt;=</span><span class="dv">2016</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-3" class="hljs-ln-code"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a href=""></a><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"GHA"</span>, <span class="at">fill_gaps =</span> <span class="cn">TRUE</span>)  <span class="sc">|&gt;</span> </span>
+<span id="cb14-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">filter</span>(year<span class="sc">&gt;=</span><span class="dv">2016</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3" class="hljs-ln-code"><a href=""></a>  <span class="fu">select</span>(country_code, year, poverty_line, headcount)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    country_code  year poverty_line headcount
@@ -653,14 +629,14 @@
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>(<span class="at">country=</span><span class="st">"PHL"</span>)       </span>
-<span id="cb18-2"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">y=</span><span class="dv">100</span><span class="sc">*</span>headcount,<span class="at">x=</span>year,<span class="at">color=</span>welfare_type)) <span class="sc">+</span>          </span>
-<span id="cb18-3"><a href=""></a>      <span class="fu">geom_line</span>() <span class="sc">+</span>                     </span>
-<span id="cb18-4"><a href=""></a>      <span class="fu">labs</span>(                          </span>
-<span id="cb18-5"><a href=""></a>      <span class="at">title =</span> <span class="st">"Extreme poverty in the Philippines, 1981-2022"</span>,                       </span>
-<span id="cb18-6"><a href=""></a>      <span class="at">y =</span> <span class="st">"Poverty rate (%)"</span>,                          </span>
-<span id="cb18-7"><a href=""></a>      <span class="at">x =</span> <span class="st">""</span>                   </span>
-<span id="cb18-8"><a href=""></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>(<span class="at">country=</span><span class="st">"PHL"</span>)       </span>
+<span id="cb16-2"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">y=</span><span class="dv">100</span><span class="sc">*</span>headcount,<span class="at">x=</span>year,<span class="at">color=</span>welfare_type)) <span class="sc">+</span>          </span>
+<span id="cb16-3"><a href=""></a>      <span class="fu">geom_line</span>() <span class="sc">+</span>                     </span>
+<span id="cb16-4"><a href=""></a>      <span class="fu">labs</span>(                          </span>
+<span id="cb16-5"><a href=""></a>      <span class="at">title =</span> <span class="st">"Extreme poverty in the Philippines, 1981-2022"</span>,                       </span>
+<span id="cb16-6"><a href=""></a>      <span class="at">y =</span> <span class="st">"Poverty rate (%)"</span>,                          </span>
+<span id="cb16-7"><a href=""></a>      <span class="at">x =</span> <span class="st">""</span>                   </span>
+<span id="cb16-8"><a href=""></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2">
@@ -668,7 +644,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -684,15 +660,15 @@
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>(<span class="at">country=</span><span class="st">"CHN"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href=""></a>      <span class="fu">filter</span>(year<span class="sc">&gt;=</span><span class="dv">1990</span>)</span>
-<span id="cb19-3"><a href=""></a>  </span>
-<span id="cb19-4"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">y=</span><span class="dv">100</span><span class="sc">*</span>headcount,<span class="at">x=</span>year,<span class="at">color=</span>reporting_level)) <span class="sc">+</span></span>
-<span id="cb19-5"><a href=""></a>      <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb19-6"><a href=""></a>      <span class="fu">labs</span>(</span>
-<span id="cb19-7"><a href=""></a>      <span class="at">title =</span> <span class="st">"Extreme poverty in China, 1990-2022"</span>,</span>
-<span id="cb19-8"><a href=""></a>      <span class="at">y =</span> <span class="st">"Poverty rate (%)"</span>,</span>
-<span id="cb19-9"><a href=""></a>      <span class="at">x =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>(<span class="at">country=</span><span class="st">"CHN"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href=""></a>      <span class="fu">filter</span>(year<span class="sc">&gt;=</span><span class="dv">1990</span>)</span>
+<span id="cb17-3"><a href=""></a>  </span>
+<span id="cb17-4"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">y=</span><span class="dv">100</span><span class="sc">*</span>headcount,<span class="at">x=</span>year,<span class="at">color=</span>reporting_level)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href=""></a>      <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb17-6"><a href=""></a>      <span class="fu">labs</span>(</span>
+<span id="cb17-7"><a href=""></a>      <span class="at">title =</span> <span class="st">"Extreme poverty in China, 1990-2022"</span>,</span>
+<span id="cb17-8"><a href=""></a>      <span class="at">y =</span> <span class="st">"Poverty rate (%)"</span>,</span>
+<span id="cb17-9"><a href=""></a>      <span class="at">x =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2">
@@ -700,7 +676,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -712,10 +688,10 @@
 <section id="within-country-comparability" class="slide level2">
 <h2>Within-country comparability</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>(<span class="at">country=</span><span class="st">"CHN"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb20-2"><a href=""></a>      <span class="fu">filter</span>(reporting_level<span class="sc">==</span><span class="st">"national"</span> <span class="sc">&amp;</span> year<span class="sc">&gt;=</span><span class="dv">1990</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href=""></a>      <span class="fu">select</span>(year,headcount,comparable_spell,welfare_type)</span>
-<span id="cb20-4"><a href=""></a><span class="fu">print</span>(df, <span class="at">n =</span> <span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>(<span class="at">country=</span><span class="st">"CHN"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href=""></a>      <span class="fu">filter</span>(reporting_level<span class="sc">==</span><span class="st">"national"</span> <span class="sc">&amp;</span> year<span class="sc">&gt;=</span><span class="dv">1990</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href=""></a>      <span class="fu">select</span>(year,headcount,comparable_spell,welfare_type)</span>
+<span id="cb18-4"><a href=""></a><span class="fu">print</span>(df, <span class="at">n =</span> <span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 19 × 4
     year headcount comparable_spell welfare_type
@@ -745,12 +721,12 @@
 <section id="data-from-lis" class="slide level2">
 <h2>Data from LIS</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href=""></a>      <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"LIS"</span>, survey_acronym)) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href=""></a>      <span class="fu">group_by</span>(country_name) <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href=""></a>      <span class="fu">summarize</span>(<span class="at">obs =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb22-5"><a href=""></a>     <span class="fu">ungroup</span>()</span>
-<span id="cb22-6"><a href=""></a><span class="fu">print</span>(df, <span class="at">n=</span><span class="dv">29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href=""></a>      <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"LIS"</span>, survey_acronym)) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href=""></a>      <span class="fu">group_by</span>(country_name) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href=""></a>      <span class="fu">summarize</span>(<span class="at">obs =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href=""></a>      <span class="fu">ungroup</span>()</span>
+<span id="cb20-6"><a href=""></a><span class="fu">print</span>(df, <span class="at">n=</span><span class="dv">29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 29 × 2
    country_name      obs
@@ -787,6 +763,67 @@
 </div>
 </div>
 </section>
+<section id="exercise-1" class="slide level2">
+<h2>Exercise 1</h2>
+<p>Explore whether Kuznets’ inverse-U hypothesis holds with data in PIP:</p>
+<ol type="1">
+<li><p>Plot the relationship between an inequality metric and log mean welfare</p></li>
+<li><p>Regress an inequality metric on a 2nd order polynomial of log mean welfare</p></li>
+</ol>
+</section>
+<section class="slide level2">
+
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Code</a></li><li><a href="#tabset-3-2">Plot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="co"># Kuznets curve? </span></span>
+<span id="cb22-2"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>()   </span>
+<span id="cb22-3"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(mean),<span class="at">y=</span>gini)) <span class="sc">+</span>   </span>
+<span id="cb22-4"><a href=""></a>      <span class="fu">geom_point</span>() <span class="sc">+</span>   </span>
+<span id="cb22-5"><a href=""></a>      <span class="fu">geom_smooth</span>() <span class="sc">+</span>   </span>
+<span id="cb22-6"><a href=""></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Kuznets curve?"</span>,</span>
+<span id="cb22-7"><a href=""></a>            <span class="at">y =</span> <span class="st">"Gini coefficient"</span>,</span>
+<span id="cb22-8"><a href=""></a>            <span class="at">x =</span> <span class="st">"Log welfare"</span>)   </span>
+<span id="cb22-9"><a href=""></a><span class="fu">summary</span>(<span class="fu">lm</span>(gini<span class="sc">~</span><span class="fu">log</span>(mean)<span class="sc">+</span><span class="fu">I</span>(<span class="fu">log</span>(mean)<span class="sc">^</span><span class="dv">2</span>),<span class="at">data=</span>df)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = gini ~ log(mean) + I(log(mean)^2), data = df)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.201332 -0.052884 -0.008769  0.045407  0.306609 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     0.323957   0.011571  27.997   &lt;2e-16 ***
+log(mean)       0.079135   0.008757   9.037   &lt;2e-16 ***
+I(log(mean)^2) -0.019545   0.001561 -12.524   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.07988 on 2501 degrees of freedom
+Multiple R-squared:  0.1515,    Adjusted R-squared:  0.1508 
+F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="global-and-regional-estimates" class="slide level2">
 <h2>Global and regional estimates</h2>
 <div class="cell">
@@ -814,9 +851,9 @@
 <section id="global-poverty-1990-2022" class="slide level2">
 <h2>Global poverty, 1990-2022</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Code</a></li><li><a href="#tabset-3-2">Plot</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Code</a></li><li><a href="#tabset-4-2">Plot</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1">
+<div id="tabset-4-1">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_wb</span>() <span class="sc">|&gt;</span></span>
 <span id="cb26-2"><a href=""></a>      <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1990</span>, region_code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"WLD"</span>,<span class="st">"EAP"</span>,<span class="st">"SSA"</span>))</span>
@@ -830,73 +867,12 @@
 <span id="cb26-10"><a href=""></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-3-2">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="exercise" class="slide level2">
-<h2>Exercise</h2>
-<p>Explore whether Kuznets’ inverse-U hypothesis holds with data in PIP</p>
-<ol type="1">
-<li><p>Plot the relationship between an inequality metric and log mean welfare</p></li>
-<li><p>Regress an inequality metric on a 2nd order polynomial of log mean welfare</p></li>
-</ol>
-</section>
-<section class="slide level2">
-
-<div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Code</a></li><li><a href="#tabset-4-2">Plot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Kuznets curve? </span></span>
-<span id="cb27-2"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>()   </span>
-<span id="cb27-3"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(mean),<span class="at">y=</span>gini)) <span class="sc">+</span>   </span>
-<span id="cb27-4"><a href=""></a>      <span class="fu">geom_point</span>() <span class="sc">+</span>   </span>
-<span id="cb27-5"><a href=""></a>      <span class="fu">geom_smooth</span>() <span class="sc">+</span>   </span>
-<span id="cb27-6"><a href=""></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Kuznets curve?"</span>,</span>
-<span id="cb27-7"><a href=""></a>            <span class="at">y =</span> <span class="st">"Gini coefficient"</span>,</span>
-<span id="cb27-8"><a href=""></a>            <span class="at">x =</span> <span class="st">"Log welfare"</span>)   </span>
-<span id="cb27-9"><a href=""></a><span class="fu">summary</span>(<span class="fu">lm</span>(gini<span class="sc">~</span><span class="fu">log</span>(mean)<span class="sc">+</span><span class="fu">I</span>(<span class="fu">log</span>(mean)<span class="sc">^</span><span class="dv">2</span>),<span class="at">data=</span>df)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = gini ~ log(mean) + I(log(mean)^2), data = df)
-
-Residuals:
-      Min        1Q    Median        3Q       Max 
--0.201332 -0.052884 -0.008769  0.045407  0.306609 
-
-Coefficients:
-                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)     0.323957   0.011571  27.997   &lt;2e-16 ***
-log(mean)       0.079135   0.008757   9.037   &lt;2e-16 ***
-I(log(mean)^2) -0.019545   0.001561 -12.524   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.07988 on 2501 degrees of freedom
-Multiple R-squared:  0.1515,    Adjusted R-squared:  0.1508 
-F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-</div>
 <div id="tabset-4-2">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -916,18 +892,15 @@ F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><p><a href="https://www.worldbank.org/en/topic/poverty/publication/poverty-and-equity-briefs">Poverty &amp; Inequality Briefs</a>: 2-page summary of poverty and inequality in almost every developing country</p></li>
 <li><p><a href="https://datacatalog.worldbank.org/search/dataset/0063646">Survey percentiles</a>: 100 percentiles of each country-year survey distribution</p></li>
 <li><p><a href="https://datacatalog.worldbank.org/search/dataset/0064304/1000-Binned-Global-Distribution">Lined-up percentiles distribution</a>: 1000 points on the global distribution</p></li>
+<li><p><a href="https://pip.worldbank.org/sol/sol-landing">Access to the microdata online</a>: Only available for the surveys we are allowed to share publicly.</p></li>
 </ul>
-</section>
-<section id="accessing-microdata-online" class="slide level2">
-<h2>Accessing microdata online</h2>
-<p><a href="https://pip.worldbank.org/sol/sol-landing">Statistics On-Line (SOL)</a></p>
 </section>
 <section id="exercise-2" class="slide level2">
 <h2>Exercise 2:</h2>
 <p>COVID-19 impact on poverty and inequality</p>
 <ol type="1">
 <li><p>Calculate and plot the change in millions of extreme poor by region from 2019 to 2020</p></li>
-<li><p>(Difficult) Calculate and plot the changes in Gini observed from 2019 to 2020 for countries with comparable data during these two years</p></li>
+<li><p>Calculate and plot the changes in Gini observed from 2019 to 2020 for countries with comparable data during these two years</p></li>
 </ol>
 </section>
 <section class="slide level2">
@@ -937,15 +910,15 @@ F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="co"># Change in number of poor, 2019-2020</span></span>
-<span id="cb29-2"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_wb</span>() <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2019</span> <span class="sc">|</span> year<span class="sc">==</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href=""></a>      <span class="fu">group_by</span>(region_code) <span class="sc">|&gt;</span></span>
-<span id="cb29-4"><a href=""></a>      <span class="fu">mutate</span>(<span class="at">changeinpoor =</span> pop_in_poverty<span class="sc">-</span><span class="fu">lag</span>(pop_in_poverty)) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a href=""></a>      <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(changeinpoor))</span>
-<span id="cb29-6"><a href=""></a></span>
-<span id="cb29-7"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> region_name,<span class="at">y=</span>changeinpoor<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb29-8"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb29-9"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in number of poor, 2019-2020"</span>,<span class="at">y =</span> <span class="st">"Milllions"</span>,<span class="at">x =</span> <span class="st">"Region"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Change in number of poor, 2019-2020</span></span>
+<span id="cb27-2"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_wb</span>() <span class="sc">|&gt;</span> <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2019</span> <span class="sc">|</span> year<span class="sc">==</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href=""></a>      <span class="fu">group_by</span>(region_code) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href=""></a>      <span class="fu">mutate</span>(<span class="at">changeinpoor =</span> pop_in_poverty<span class="sc">-</span><span class="fu">lag</span>(pop_in_poverty)) <span class="sc">|&gt;</span></span>
+<span id="cb27-5"><a href=""></a>      <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(changeinpoor))</span>
+<span id="cb27-6"><a href=""></a></span>
+<span id="cb27-7"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y =</span> region_name,<span class="at">x=</span>changeinpoor<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb27-8"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb27-9"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in number of poor, 2019-2020"</span>,<span class="at">x =</span> <span class="st">"Milllions"</span>,<span class="at">y =</span> <span class="st">"Region"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-5-2">
@@ -953,7 +926,7 @@ F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -969,18 +942,25 @@ F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="co"># Change in Gini, 2019-2020?=</span></span>
-<span id="cb30-2"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>() <span class="sc">|&gt;</span> <span class="fu">filter</span>((year<span class="sc">==</span><span class="dv">2019</span> <span class="sc">|</span> year<span class="sc">==</span><span class="dv">2020</span>) <span class="sc">&amp;</span> reporting_level<span class="sc">==</span><span class="st">"national"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a href=""></a>      <span class="fu">group_by</span>(country_code,welfare_type,comparable_spell) <span class="sc">|&gt;</span></span>
-<span id="cb30-4"><a href=""></a>      <span class="co"># Only keeps countries with comparable estimates in 2019 and 2020</span></span>
-<span id="cb30-5"><a href=""></a>      <span class="fu">filter</span>(<span class="fu">n</span>()<span class="sc">==</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb30-6"><a href=""></a>      <span class="fu">mutate</span>(<span class="at">ginichange =</span> gini<span class="sc">-</span><span class="fu">lag</span>(gini)) <span class="sc">|&gt;</span></span>
-<span id="cb30-7"><a href=""></a>      <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2020</span>)</span>
-<span id="cb30-8"><a href=""></a></span>
-<span id="cb30-9"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country_name, <span class="sc">+</span>ginichange),<span class="at">y=</span>ginichange<span class="sc">*</span><span class="dv">100</span>,<span class="at">fill=</span>region_name)) <span class="sc">+</span></span>
-<span id="cb30-10"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb30-11"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Gini index, 2019-2020"</span>,<span class="at">y =</span> <span class="st">"Gini points"</span>,<span class="at">x =</span> <span class="st">"Country"</span>) <span class="sc">+</span></span>
-<span id="cb30-12"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="co"># Change in Gini, 2019-2020?=</span></span>
+<span id="cb28-2"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">get_stats</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb28-3"><a href=""></a>      <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2019</span> <span class="sc">|</span> year<span class="sc">==</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href=""></a>      <span class="fu">filter</span>(reporting_level<span class="sc">==</span><span class="st">"national"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href=""></a>      <span class="fu">group_by</span>(country_code,welfare_type,comparable_spell) <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href=""></a>      <span class="co"># Only keeps countries with comparable estimates in 2019 and 2020</span></span>
+<span id="cb28-7"><a href=""></a>      <span class="fu">filter</span>(<span class="fu">n</span>()<span class="sc">==</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-8"><a href=""></a>      <span class="fu">mutate</span>(<span class="at">ginichange =</span> gini<span class="sc">-</span><span class="fu">lag</span>(gini)) <span class="sc">|&gt;</span></span>
+<span id="cb28-9"><a href=""></a>      <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2020</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-10"><a href=""></a>      <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb28-11"><a href=""></a>      <span class="co"># If countries have both income and consumption estimates, use only the latter</span></span>
+<span id="cb28-12"><a href=""></a>      <span class="fu">group_by</span>(country_code) <span class="sc">|&gt;</span></span>
+<span id="cb28-13"><a href=""></a>      <span class="fu">filter</span>(<span class="fu">n</span>()<span class="sc">==</span><span class="dv">1</span> <span class="sc">|</span> welfare_type<span class="sc">==</span><span class="st">"consumption"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-14"><a href=""></a>      <span class="fu">ungroup</span>()</span>
+<span id="cb28-15"><a href=""></a></span>
+<span id="cb28-16"><a href=""></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df[df<span class="sc">$</span>country_code<span class="sc">!=</span><span class="st">"XKX"</span>,], <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country_name, <span class="sc">+</span>ginichange),<span class="at">y=</span>ginichange<span class="sc">*</span><span class="dv">100</span>,<span class="at">fill=</span>region_name)) <span class="sc">+</span></span>
+<span id="cb28-17"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb28-18"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Gini index, 2019-2020"</span>,<span class="at">y =</span> <span class="st">"Gini points"</span>,<span class="at">x =</span> <span class="st">"Country"</span>) <span class="sc">+</span></span>
+<span id="cb28-19"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-6-2">
@@ -988,7 +968,7 @@ F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+<p><img data-src="PIP_in_R_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -996,9 +976,17 @@ F-statistic: 223.3 on 2 and 2501 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="citation" class="slide level2">
+<h2>Citation</h2>
+<p>If you are using the pipr package, we would be grateful if you could cite</p>
+<ul>
+<li><p>Fujs T, Eilertsen A, Shah R, Castañeda R, Cecchinato G (2025).&nbsp;<em>pipr: Client for the Poverty and Inequality Platform (‘PIP’) API</em>. R package version 1.1.0, https://github.com/worldbank/pipr, &lt;https://pip.worldbank.org/api&gt;,&nbsp;<a href="https://worldbank.github.io/pipr/" class="uri">https://worldbank.github.io/pipr/</a>.</p></li>
+<li><p>World Bank. (2025). Poverty and Inequality Platform (version 20250401_2021_01_02_PROD) [Data set]. World Bank Group. https://pip.worldbank.org/</p></li>
+</ul>
 </section></section>
-<section id="thank-you-for-listening." class="title-slide slide level1 center">
-<h1>Thank you for listening.</h1>
+<section id="thank-you-for-listening" class="title-slide slide level1 center">
+<h1>Thank you for listening</h1>
 <p>dmahler@worldbank.org</p>
 <div class="quarto-auto-generated-content">
 <p><img src="img/WB-PIP-E-horizontal-RGB-med.png" class="slide-logo"></p>

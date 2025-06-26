@@ -30,15 +30,15 @@ format:
 
 ## Poverty data at the World Bank
 
--   The World Bank mission is to help low- and middle-income countries reduce poverty
+-   The World Bank's mission is to help low- and middle-income countries reduce poverty
 
 -   The Bank often helps countries field household surveys to measure poverty and helps countries create poverty estimates from these surveys
 
--   Some countries do not receive assistance yet the Bank is granted access to the data through collaborations with the National Statistical Office
+-   Countries that do not receive assistance often grant the Bank access to the data through collaborations with the National Statistical Office
 
--   For high-income countries, poverty data is sourced from the Luxembourg Income Study or EU-SILC
+-   For high-income countries, we access poverty data from the Luxembourg Income Study or EU-SILC
 
-## The Poverty and Inequality data Platform (PIP)
+## The Poverty and Inequality Platform (PIP)
 
 -   This data is harmonized to the extent possible and converted to dollars using purchasing power exchange rates
 
@@ -51,15 +51,12 @@ format:
 ```{r}
 #| echo: false
 #| cache: false
-library(pipr)
 library(tidyverse)
 library(ggthemes)
 library(pipr)
 ```
 
-## The pipr package
-
-**Installation:**
+## Installing the pipr package
 
 ``` r
 # To install the pipr package, you first need to install the devtools package
@@ -68,7 +65,7 @@ install.packages("devtools")
 devtools::install_github("worldbank/pipr")
 # Now load pipr
 library(pipr)
-# I'll use dplyr a lot in these slides, so best to load it as well
+# We'll use dplyr a lot in these slides, so best to load it as well
 library(dplyr)
 ```
 
@@ -95,13 +92,6 @@ library(dplyr)
 ```{r}
 #| echo: true
 get_stats() 
-```
-
-## Variables
-
-```{r}
-#| echo: true
-colnames(get_stats())
 ```
 
 ## Variable information
@@ -242,9 +232,9 @@ df <- get_stats() |>
 print(df, n=29)
 ```
 
-## Exercise
+## Exercise 1
 
-Explore whether Kuznets' inverse-U hypothesis holds with data in PIP
+Explore whether Kuznets' inverse-U hypothesis holds with data in PIP:
 
 1.  Plot the relationship between an inequality metric and log mean welfare
 
@@ -328,7 +318,7 @@ gr
 
 -   [Lined-up percentiles distribution](https://datacatalog.worldbank.org/search/dataset/0064304/1000-Binned-Global-Distribution): 1000 points on the global distribution
 
-- [Accessing some of the microdata online)](https://pip.worldbank.org/sol/sol-landing)
+-   [Access to the microdata online](https://pip.worldbank.org/sol/sol-landing): Only available for the surveys we are allowed to share publicly.
 
 ## Exercise 2:
 
@@ -336,7 +326,7 @@ COVID-19 impact on poverty and inequality
 
 1.  Calculate and plot the change in millions of extreme poor by region from 2019 to 2020
 
-2.  (Difficult) Calculate and plot the changes in Gini observed from 2019 to 2020 for countries with comparable data during these two years
+2.  Calculate and plot the changes in Gini observed from 2019 to 2020 for countries with comparable data during these two years
 
 ------------------------------------------------------------------------
 
@@ -404,6 +394,14 @@ gr
 ```
 :::
 
-# Thank you for listening.
+## Citation
+
+If you are using the pipr package, we would be grateful if you could cite
+
+-   Fujs T, Eilertsen A, Shah R, Castañeda R, Cecchinato G (2025). *pipr: Client for the Poverty and Inequality Platform ('PIP') API*. R package version 1.1.0, https://github.com/worldbank/pipr, \<https://pip.worldbank.org/api\>, <https://worldbank.github.io/pipr/>.
+
+-   World Bank. (2025). Poverty and Inequality Platform (version 20250401_2021_01_02_PROD) \[Data set\]. World Bank Group. https://pip.worldbank.org/
+
+# Thank you for listening
 
 dmahler\@worldbank.org

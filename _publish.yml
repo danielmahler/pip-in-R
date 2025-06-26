@@ -1,0 +1,4 @@
+- source: PIP_in_R.qmd
+  quarto-pub:
+    - id: e10620be-0e91-43b3-91d8-0b31fb7d071a
+      url: 'https://danielmahler.quarto.pub/pip-in-r'
